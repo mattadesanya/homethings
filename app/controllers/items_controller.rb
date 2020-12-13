@@ -9,5 +9,8 @@ class ItemsController < ApplicationController
   end
 
   def new
+    @page_name = 'New Item'
+    @page_title = 'New Item'
+    @rooms = Room.all
   end
 end
