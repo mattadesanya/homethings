@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :restrict_access
+
   def index
     @page_title = 'House Items (List)'
     @button_action = 'Add Item'
@@ -43,10 +45,6 @@ class ItemsController < ApplicationController
     @item.destroy
 
     redirect_to root_path
-  end
-
-  def show
-    @item = Item.find(params[:id])
   end
 
   private
