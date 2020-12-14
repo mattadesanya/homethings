@@ -1,0 +1,26 @@
+<%= form_with(model: @item, local: true) do |f|  %>
+    <% if @item.errors.any? %>
+        <div class="alert alert-warning" role="alert">
+          <strong><%= pluralize(@item.errors.count, "error") %>
+          prohibited this item from being saved:</strong>
+          <ul>
+              <% @item.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :name %><br>
+      <%= f.text_field :name,  :class => 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :room %><br>
+      <%= f.select :room_id, Room.all.collect { |r| [ r.name, r.id ] }, { :prompt => "Choose" }, { :class => 'custom-select' } %>
+    </div>
+
+    <div>
+    <%= f.submit 'Save', :class => 'btn btn-primary' %>
+  </div>
+<% end %>
